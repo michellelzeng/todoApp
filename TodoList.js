@@ -1,7 +1,7 @@
 import React, {Component} from "react";
-import {TodoItem} from "./TodoItem"
+import TodoItem from "./TodoItem"
 
-export class TodoList extends Component {
+export default class TodoList extends Component {
     render() {
         var createItem = function (item) {
             return <TodoItem summary={item.summary} key={item.key}/> ;
