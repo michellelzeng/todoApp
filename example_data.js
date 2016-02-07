@@ -3,22 +3,22 @@ export default {
         {
             "key": 1,
             "summary": "learn ES6",
-            "status": "todo"
+            "completed": "todo"
         },
         {
             "key": 2,
             "summary": "learn npm",
-            "status": "todo"
+            "completed": "todo"
         },
         {
             "key": 3,
             "summary": "learn webpack",
-            "status": "todo"
+            "completed": "todo"
         },
         {
             "key": 4,
             "summary": "learn react",
-            "status": "todo"
+            "completed": "todo"
         }
     ]
 }
