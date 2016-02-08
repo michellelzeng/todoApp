@@ -1,17 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import data from "./example_data";
+import {addTodo} from "./action"
+import {createStore} from "redux"
+import todoApp from "./reducer"
 import TodoList from "./TodoList"
+
 
 const init = function() {
 
+    let store = createStore(todoApp) ;
+
     document.getElementById("addTodo").addEventListener("click", function(){
-        const summary = document.getElementById("summary").value;
-        const lastKey = data.items[data.items.length -1].key ;
-        data.items.push({key: lastKey + 1, summary: summary, completed: "todo"});
-        ReactDOM.render(<TodoList list={data.items}/>, document.getElementById("todo-list"));
+
+        store.dispatch(addTodo(document.getElementById("summary").value));
+
+        ReactDOM.render(<TodoList list={store.getState().todos}/>, document.getElementById("todo-list"));
     });
-    ReactDOM.render(<TodoList list={data.items}/>, document.getElementById("todo-list"));
+
+    ReactDOM.render(<TodoList list={store.getState().todos}/>, document.getElementById("todo-list"));
 };
 
 if (document.readyState === 'complete') {
