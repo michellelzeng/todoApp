@@ -8,9 +8,9 @@ export function addTodo(summary) {
     }
 }
 
-export function completeTodo(summary) {
+export function completeTodo(id) {
     return {
         type: COMPLETE_TODO,
-        summary: summary
+        id: id
     }
 }
