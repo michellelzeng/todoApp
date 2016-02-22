@@ -1,4 +1,4 @@
-const stub = (obj, functionName)  => {
+const Mystub = (obj, functionName)  => {
     const originalFunction = obj[functionName] ;
 
     obj[functionName] = function () {
@@ -20,4 +20,4 @@ const stub = (obj, functionName)  => {
 //stub(obj, functionName).returns('a')
 //Returns 'a' when called
 
-export default stub;
+export default Mystub;

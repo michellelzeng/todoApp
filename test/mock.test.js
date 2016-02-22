@@ -1,6 +1,6 @@
 import mock from './mock.js'
 
-export default function test () {
+export default function testMock () {
     let obj = {
         foo: () => {
             return 1;

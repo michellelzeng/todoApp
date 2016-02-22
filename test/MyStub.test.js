@@ -1,4 +1,4 @@
-import stub from './MyStub';
+import Mystub from './MyStub';
 
 let obj = {
     sayHello: function () {
@@ -7,17 +7,17 @@ let obj = {
 };
 
 export function testStub() {
-    stub(obj, 'sayHello');
+    Mystub(obj, 'sayHello');
 }
 
 
 export function testRestore () {
-    stub(obj, 'sayHello').restore();
+    Mystub(obj, 'sayHello').restore();
     obj.sayHello();
 }
 
 export function testReturns () {
-    stub(obj, 'sayHello').returns('a');
+    Mystub(obj, 'sayHello').returns('a');
     alert(obj.sayHello());
 }
 

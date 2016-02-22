@@ -1,4 +1,4 @@
-import stub from './MyStubReturns.js';
+import stub from './stub.js';
 
 let obj = {
     sayHello: function () {
@@ -7,7 +7,7 @@ let obj = {
 };
 
 
-export default function testReturns () {
+export default function testStub () {
     //stub(obj, 'sayHello').calledWith(1,2).returns(3);
     stub(obj, 'sayHello').calledWith(1,2).returns(3).calledWith(1,2,3).returns('explosion');
     alert(obj.sayHello(1, 2));
