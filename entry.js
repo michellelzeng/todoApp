@@ -5,6 +5,7 @@ import {createStore} from "redux"
 import todoApp from "./reducer"
 import TodoList from "./TodoList"
 import testReturns from './test/MyStubReturns.test.js';
+import test from './test/mock.test.js';
 
 
 const init = function() {
@@ -21,6 +22,7 @@ const init = function() {
     ReactDOM.render(<TodoList list={store.getState().todos}/>, document.getElementById("todo-list"));
 
     testReturns();
+    //test()
 };
 
 if (document.readyState === 'complete') {

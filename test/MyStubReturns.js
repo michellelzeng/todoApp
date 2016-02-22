@@ -1,17 +1,34 @@
 const stub = (obj, functionName)  => {
     const originalFunction = obj[functionName] ;
 
-    obj[functionName] = function () {
-    };
-
-    return {
+    const result = {
       restore: originalFunction,
-      returns: (returnValue) => {
-          obj[functionName] = function () {
-              return returnValue;
+      answers: (func) => {
+          obj[functionName] = (param) => {
+              return func(param);
           }
+      },
+      calledWith: (a, b) => {
+        return {
+            returns: (returnValue) => {
+                obj[functionName] = function (a1, b1) {
+                    //alert(arguments.length);
+                    if(arguments.length > 2) {
+                        //alert(arguments.length);
+                        return 'explosion';
+                    }
+                    if(a === a1 && b === b1) {
+                        return returnValue;
+                    }else {
+                        return undefined;
+                    }
+                };
+                return result;
+            }
+        }
       }
     };
+    return result;
 };
 
 
