@@ -1,20 +1,18 @@
 function equal(array1, array2) {
-
     return array1.length === array2.length && array1.every((element, index) => element === array2[index]);
 }
 
 const stub = (obj, functionName)  => {
     const originalFunction = obj[functionName] ;
 
-    let calledWithParams ;
-    let value;
-    let list;
+    let list = [];
     obj[functionName] = (a ,b) => {
-        // 1. loop through each item in the list
-        // 2. check if the item matches the arguments
-        // 3. if yes, return the corresponding value
-
-
+        var args = Array.from(arguments);
+        for(let item of list) {
+            if(equal(item.params, args)) {
+                return item.value;
+            }
+        }
     };
 
     const result = {
@@ -25,12 +23,11 @@ const stub = (obj, functionName)  => {
           }
       },
       calledWith: (a, b) => {
-          calledWithParams = Array.prototype.slice.call(arguments);
+          var args = Array.prototype.slice.call(arguments);
             return {
                     returns: (returnValue) => {
-                        value = returnValue;
                         list.push({
-                            params: arguments,
+                            params: args,
                             value: returnValue
                         });
                         return result;
@@ -40,13 +37,4 @@ const stub = (obj, functionName)  => {
     };
     return result;
 };
-
-
-//stub(obj, functionName).restore()
-//Replaces the function on the object, then restores it to its original
-
-
-//stub(obj, functionName).returns('a')
-//Returns 'a' when called
-
 export default stub;

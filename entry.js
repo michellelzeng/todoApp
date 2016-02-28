@@ -6,6 +6,7 @@ import todoApp from "./reducer"
 import TodoList from "./TodoList"
 import testStub from './test/stub.test.js';
 import testMock from './test/mock.test.js';
+import testMyStub from './test/MyStub.test.js';
 
 
 const init = function() {
@@ -21,8 +22,9 @@ const init = function() {
 
     ReactDOM.render(<TodoList list={store.getState().todos}/>, document.getElementById("todo-list"));
 
-    testStub();
+    //testStub();
     //testMock();
+    testMyStub();
 };
 
 if (document.readyState === 'complete') {

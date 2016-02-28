@@ -1,24 +1,19 @@
 import Mystub from './MyStub';
 
 let obj = {
-    sayHello: function () {
-        alert("hello");
+    hello: function () {
+        return("hello");
     }
 };
 
-export function testStub() {
-    Mystub(obj, 'sayHello');
-}
+export default function test() {
+    let stub = Mystub(obj, 'hello');
+    alert(obj.hello());
+    stub.restore();
+    alert(obj.hello());
+    stub.returns('a');
+    alert(obj.hello());
 
-
-export function testRestore () {
-    Mystub(obj, 'sayHello').restore();
-    obj.sayHello();
-}
-
-export function testReturns () {
-    Mystub(obj, 'sayHello').returns('a');
-    alert(obj.sayHello());
 }
 
 
