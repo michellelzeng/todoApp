@@ -2,15 +2,20 @@ function equal(array1, array2) {
     return array1.length === array2.length && array1.every((element, index) => element === array2[index]);
 }
 
-const MyStub = (obj, functionName)  => {
+const awesomeStub = (obj, functionName)  => {
     const originalFunction = obj[functionName] ;
     let list = [];
-    obj[functionName] = (a ,b) => {
+    let answerFunc;
+    obj[functionName] = () => {
         var args = Array.from(arguments);
         for(let item of list) {
             if(equal(item.args, args)) {
                 return item.value;
             }
+        }
+        //if answers exists, then return answerFunction.
+        if(answerFunc) {
+            return answerFunc(arguments);
         }
     };
 
@@ -18,6 +23,10 @@ const MyStub = (obj, functionName)  => {
       restore: () => {
           obj[functionName] = originalFunction;
           return stub;
+      },
+      answers: (fn) => {
+        answerFunc = fn;
+        return stub;
       },
       returns: (value) => {
           if(list.length == 0) {
@@ -40,4 +49,4 @@ const MyStub = (obj, functionName)  => {
 };
 
 
-export default MyStub;
+export default awesomeStub;
