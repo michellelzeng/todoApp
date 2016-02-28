@@ -1,4 +1,4 @@
-const Mystub = (obj, functionName)  => {
+const MyStub = (obj, functionName)  => {
     const originalFunction = obj[functionName] ;
     obj[functionName] = function () {
     };
@@ -15,11 +15,5 @@ const Mystub = (obj, functionName)  => {
     };
 };
 
-//stub(obj, functionName).restore()
-//Replaces the function on the object, then restores it to its original
 
-
-//stub(obj, functionName).returns('a')
-//Returns 'a' when called
-
-export default Mystub;
+export default MyStub;
