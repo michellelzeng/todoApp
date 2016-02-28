@@ -21,8 +21,8 @@ const init = function() {
 
     ReactDOM.render(<TodoList list={store.getState().todos}/>, document.getElementById("todo-list"));
 
-    //testStub();
-    testMock();
+    testStub();
+    //testMock();
 };
 
 if (document.readyState === 'complete') {

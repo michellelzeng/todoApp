@@ -1,5 +1,21 @@
+function equal(array1, array2) {
+
+    return array1.length === array2.length && array1.every((element, index) => element === array2[index]);
+}
+
 const stub = (obj, functionName)  => {
     const originalFunction = obj[functionName] ;
+
+    let calledWithParams ;
+    let value;
+    let list;
+    obj[functionName] = (a ,b) => {
+        // 1. loop through each item in the list
+        // 2. check if the item matches the arguments
+        // 3. if yes, return the corresponding value
+
+
+    };
 
     const result = {
       restore: originalFunction,
@@ -9,23 +25,17 @@ const stub = (obj, functionName)  => {
           }
       },
       calledWith: (a, b) => {
-        return {
-            returns: (returnValue) => {
-                obj[functionName] = function (a1, b1) {
-                    //alert(arguments.length);
-                    if(arguments.length > 2) {
-                        //alert(arguments.length);
-                        return 'explosion';
+          calledWithParams = Array.prototype.slice.call(arguments);
+            return {
+                    returns: (returnValue) => {
+                        value = returnValue;
+                        list.push({
+                            params: arguments,
+                            value: returnValue
+                        });
+                        return result;
                     }
-                    if(a === a1 && b === b1) {
-                        return returnValue;
-                    }else {
-                        return undefined;
-                    }
-                };
-                return result;
             }
-        }
       }
     };
     return result;

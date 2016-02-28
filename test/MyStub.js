@@ -1,16 +1,21 @@
 const Mystub = (obj, functionName)  => {
     const originalFunction = obj[functionName] ;
-
+    let temp;
     obj[functionName] = function () {
+        return temp;
     };
 
     return {
-      restore: originalFunction,
+      restore: () => {
+          obj[functionName] = originalFunction;
+      },
       returns: (returnValue) => {
-          return returnValue;
+          temp = returnValue;
       }
     };
 };
+
+Mystub();
 
 
 //stub(obj, functionName).restore()
