@@ -4,9 +4,7 @@ import {addTodo} from "./action"
 import {createStore} from "redux"
 import todoApp from "./reducer"
 import TodoList from "./TodoList"
-import testStub from './test/stub.test.js';
-import testMock from './test/mock.test.js';
-import testMyStub from './test/awesomeStub.test.js';
+import testStub, {testMock} from './test/awesomeStub.test.js';
 
 
 const init = function() {
@@ -23,8 +21,7 @@ const init = function() {
     ReactDOM.render(<TodoList list={store.getState().todos}/>, document.getElementById("todo-list"));
 
     //testStub();
-    //testMock();
-    testMyStub();
+    testMock();
 };
 
 if (document.readyState === 'complete') {
