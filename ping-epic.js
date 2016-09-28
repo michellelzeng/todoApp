@@ -1,5 +1,6 @@
-const pingEpic = action$ =>
-    action$.filter(action => action.type === 'PING')
+const pingEpic = action$ =>{
+    console.log(action$.ofType);
+    return action$.ofType('PING')
         .delay(1000) // Asynchronously wait 1000ms then continue
-        .mapTo({type: 'PONG'});
+        .mapTo({type: 'PONG'})};
 export default pingEpic;
