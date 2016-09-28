@@ -1,5 +1,6 @@
 function counterApp(state = {total: 0}, action){
-    if(action.type === 'plus') {
+    console.log(state, action);
+    if(action.type === 'INCREMENT') {
         return {
             total: state.total + 1
         };

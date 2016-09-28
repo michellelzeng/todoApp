@@ -1,5 +1,11 @@
-export function add() {
+export function increment() {
     return {
-        type: 'plus'
+        type: 'INCREMENT'
+    }
+}
+
+export function incrementDelay() {
+    return {
+        type: 'INCREMENT_DELAY'
     }
 }

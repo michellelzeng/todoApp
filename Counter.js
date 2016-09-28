@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {add} from './actionCreator';
+import {incrementDelay} from './actionCreator';
 import Rx from 'rxjs/Rx';
 
 export class Counter extends Component {
@@ -18,9 +18,8 @@ const mapStateToProps = state => ({total: state.total});
 
 const mapDispatchToProps = dispatch => ({
     onClick: () => {
-        const test = Rx.Observable.of(1,2,3);
-        console.log(test);
-        dispatch(add());
+        dispatch({type: 'PING'});
+        dispatch(incrementDelay());
     }
 });
 export default connect(
