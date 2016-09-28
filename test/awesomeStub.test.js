@@ -20,13 +20,14 @@ export default function testStub() {
     //alert(obj.hello());
 
     //stub.calledWith(1, 2).returns(3).calledWith(1, 2, 3).returns('explosion');
-    stub.answers( a => 'Hello' + a);
+    //stub.answers( a => 'Hello' + a);
 
-    //stub.calledWith(1, 2, 3).returns('explosion').answers( a => 'Hello' + a);
+    stub.calledWith(1, 2, 3).returns('explosion').answers( a => 'Hello' + a);
 
 
+    //alert(obj.hello(1, 2));
     alert(obj.hello(1, 2, 3));
-    alert(obj.hello('Michelle'));
+    alert(obj.hello(' Michelle'));
 }
 
 export function testMock() {

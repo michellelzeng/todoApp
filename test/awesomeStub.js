@@ -6,7 +6,7 @@ const awesomeStub = (obj, functionName)  => {
     const originalFunction = obj[functionName] ;
     let list = [];
     let answerFunc;
-    obj[functionName] = () => {
+    obj[functionName] = function () {
         var args = Array.from(arguments);
         for(let item of list) {
             if(equal(item.args, args)) {
@@ -15,7 +15,7 @@ const awesomeStub = (obj, functionName)  => {
         }
         //if answers exists, then return answerFunction.
         if(answerFunc) {
-            return answerFunc(arguments);
+            return answerFunc.apply(null, arguments);
         }
     };
 
@@ -39,9 +39,9 @@ const awesomeStub = (obj, functionName)  => {
           }
           return stub;
       },
-      calledWith: () => {
-          var args = Array.prototype.slice.call(arguments);
-          list.push({args: args});
+      calledWith()  {
+          const a = Array.prototype.slice.call(arguments);
+          list.push({args: a});
           return stub;
       }
     };
@@ -51,7 +51,7 @@ const awesomeStub = (obj, functionName)  => {
 export const awesomeMock = (obj) => {
 
     let mockObject = {};
-    let list = [];
+    let list = []; // contains a list of {functionName: fu, cases: [ {input: params, output: value}]}
     let functionName;
 
     const setFunction = () => {
@@ -61,12 +61,6 @@ export const awesomeMock = (obj) => {
             }
         }
     } ;
-
-    // a list that remembers the function name and the return value.
-    // when returns called, I'll save the value and the previous function name there.
-
-    // loop through each item in the list, set the return value for each function
-
     let functions = Object.getOwnPropertyNames(obj);
 
     for(let i in functions) {
@@ -74,7 +68,7 @@ export const awesomeMock = (obj) => {
             functionName = functions[i];
             return {
                 returns: (value) => {
-                    list.push( {functionName, value});
+                    list.push( {functionName, value}); //check if the function exists, yes: then add
                     setFunction();
                     return mockObject;
                 }
@@ -86,17 +80,5 @@ export const awesomeMock = (obj) => {
     return mockObject;
 
 };
-
-//let mock = awesomeMock(obj);
-//
-//mock.foo().returns(3);
-//mock.test().return(4);
-//
-//
-//
-//alert(obj.foo());
-//alert(obj.test());
-//
-//mock.foo(1, 2).returns(3);
 
 export default awesomeStub;

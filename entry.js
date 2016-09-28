@@ -1,27 +1,37 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import {addTodo} from "./action"
-import {createStore} from "redux"
+import {createStore} from "redux";
 import todoApp from "./reducer"
 import TodoList from "./TodoList"
 import testStub, {testMock} from './test/awesomeStub.test.js';
-
+import Counter from './Counter';
+import {Provider} from 'react-redux';
+import counterApp from './counterApp';
 
 const init = function() {
 
-    let store = createStore(todoApp) ;
+    console.log(counterApp);
+    let store = createStore(counterApp) ;
 
-    document.getElementById("addTodo").addEventListener("click", function(){
+    // document.getElementById("addTodo").addEventListener("click", function(){
+    //
+    //     store.dispatch(addTodo(document.getElementById("summary").value));
+    //
+    //     ReactDOM.render(<TodoList list={store.getState().todos}/>, document.getElementById("todo-list"));
+    // });
 
-        store.dispatch(addTodo(document.getElementById("summary").value));
+    // ReactDOM.render(<TodoList list={store.getState().todos}/>, document.getElementById("todo-list"));
+    console.log(Counter);
+    ReactDOM.render(
+        <Provider store={store}>
+            <Counter />
+        </Provider>,
+        document.getElementById('app')
+    );
 
-        ReactDOM.render(<TodoList list={store.getState().todos}/>, document.getElementById("todo-list"));
-    });
-
-    ReactDOM.render(<TodoList list={store.getState().todos}/>, document.getElementById("todo-list"));
-
-    //testStub();
-    testMock();
+    // testStub();
+    //testMock();
 };
 
 if (document.readyState === 'complete') {
