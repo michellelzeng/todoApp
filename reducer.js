@@ -1,8 +1,9 @@
 import {ADD_TODO, COMPLETE_TODO, addTodo, completeTodo} from './action'
 import data from "./example_data";
+import {List} from 'immutable';
 
 const initialState = {
-    todos: data.todos,
+    todos: List.of(data.todos),
     summary: ""
 }
 
