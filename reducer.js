@@ -3,10 +3,12 @@ import data from "./example_data";
 import {List} from 'immutable';
 
 const initialState = {
-    todos: List.of(data.todos),
+    todos: List(data.todos),
     summary: ""
 }
 
+console.log(initialState.todos);
+console.log(initialState.todos.toArray());
 function todoApp(state = initialState, action = ADD_TODO) {
     switch(action.type) {
         case ADD_TODO:

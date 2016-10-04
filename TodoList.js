@@ -3,8 +3,9 @@ import TodoItem from "./TodoItem"
 
 export default class TodoList extends Component {
     render() {
-        console.log(this.props.list.toArray());
+//        console.log(this.props.list.toObject());
         var createItem = function (item) {
+//            console.log(item);
             return <TodoItem summary={item.summary} key={item.key}/> ;
         };
 
