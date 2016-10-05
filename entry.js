@@ -10,15 +10,17 @@ import Immutable from 'immutable';
 const init = function() {
 
     let store = createStore(todoApp) ;
+            console.log(store.getState().board.todos);
 
     document.getElementById("addTodo").addEventListener("click", function(){
 
         store.dispatch(addTodo(document.getElementById("summary").value));
 
-        ReactDOM.render(<TodoList list={store.getState().todos}/>, document.getElementById("todo-list"));
+
+        ReactDOM.render(<TodoList list={store.getState().board.todos}/>, document.getElementById("todo-list"));
     });
 
-    ReactDOM.render(<TodoList list={store.getState().todos}/>, document.getElementById("todo-list"));
+    ReactDOM.render(<TodoList list={store.getState().board.todos}/>, document.getElementById("todo-list"));
 };
 
 if (document.readyState === 'complete') {
