@@ -1,5 +1,5 @@
-export default {
-    "todos": [
+export default
+    [
         {
             "id": 1,
             "key": 1,
@@ -25,4 +25,3 @@ export default {
             "completed": "false"
         }
     ]
-}

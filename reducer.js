@@ -2,22 +2,19 @@ import {ADD_TODO, COMPLETE_TODO, addTodo, completeTodo} from './action'
 import data from "./example_data";
 import Immutable from 'seamless-immutable';
 
-const initialState = Immutable({
-    todos: data.todos,
-    summary: ""
-});
+const initialState = Immutable(data);
 
 function todoApp(state = initialState, action = ADD_TODO) {
     switch(action.type) {
         case ADD_TODO:
-            const newId = state.todos[state.todos.length -1].id + 1;
+            const newId = state[state.length -1].id + 1;
             
-            const newState = state.updateIn(['todos'], x => (x.concat({
+            const newState = Immutable(state.concat({
                 id: newId,
                 key: newId,
                 summary: action.summary,
                 completed: false
-            })));
+            }));
             return newState;
         case COMPLETE_TODO:
 
