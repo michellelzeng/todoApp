@@ -1,19 +1,24 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {createStore} from "redux";
-import Counter from './Counter';
-import {Provider} from 'react-redux';
-import configStore from './configStore.js';
+import {addTodo} from "./action"
+import {createStore} from "redux"
+import todoApp from "./reducer"
+import TodoList from "./TodoList"
+import testStub, {testMock} from './test/awesomeStub.test.js';
+
 
 const init = function() {
-    let store = configStore() ;
 
-    ReactDOM.render(
-        <Provider store={store}>
-            <Counter />
-        </Provider>,
-        document.getElementById('app')
-    );
+    let store = createStore(todoApp) ;
+
+    document.getElementById("addTodo").addEventListener("click", function(){
+
+        store.dispatch(addTodo(document.getElementById("summary").value));
+
+        ReactDOM.render(<TodoList list={store.getState().todos}/>, document.getElementById("todo-list"));
+    });
+
+    ReactDOM.render(<TodoList list={store.getState().todos}/>, document.getElementById("todo-list"));
 };
 
 if (document.readyState === 'complete') {
