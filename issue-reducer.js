@@ -18,7 +18,7 @@ export default function (state = initialState, action){
                return {
                    ...issue,
                    summary: issue.summary + issue.id,
-                   desc: issue.desc + issue.id,
+                   desc: issue.desc + issue.desc
                }
            }
            return issue;
