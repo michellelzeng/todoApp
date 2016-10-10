@@ -13,6 +13,7 @@ class Root extends Component {
     // }
     //
     render() {
+        console.log(this.props.store.getState());
         return (
             <Provider store={this.props.store}>
                 <div>
