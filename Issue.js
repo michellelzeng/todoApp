@@ -4,7 +4,6 @@ import {selectIssue} from './issue-reducer';
 
 export class Issue extends Component {
     render() {
-        console.log('render method is called', this.props.issue.id);
         return (
             <div>
                 card
@@ -16,13 +15,16 @@ export class Issue extends Component {
     }    
 }
 
+const getIssueSelector = (state, issueId) => (
+    state.issues.find((issue) => (issue.id === issueId))
+);
+
 export default connect(
-    (state, ownProps) => ({issue: state.issues.find((issue) => (issue.id === ownProps.issueId))}),
-    (dispatch, ownProps) => {
-        console.log(ownProps);
-        console.log('connect method is called');
+    (state, ownProps) => {
         return {
-            onClick: () => {dispatch(selectIssue(ownProps.issueId))}
-        }
-    }
+            issue: getIssueSelector(state, ownProps.issueId)
+        }},
+    (dispatch, ownProps) => ({
+        onClick: () => {dispatch(selectIssue(ownProps.issueId))}
+    })
 )(Issue);
