@@ -9,6 +9,7 @@ import testStub, {testMock} from './test/awesomeStub.test.js';
 
 const init = function() {
 
+    console.log('test');
     let store = createStore(todoApp) ;
 
     document.getElementById("addTodo").addEventListener("click", function(){
