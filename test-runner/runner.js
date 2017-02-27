@@ -1,19 +1,16 @@
-var exports = module.exports = {};
-
 const tests = [];
-exports.it = function(desc, fn){
+const it = (desc, fn) => {
     tests.push({
         desc: desc,
         fn: fn
     });
 };
 
-exports.run = function() {
+const run = () => {
     // load all the test files
     // run the it methods one by one
     // save the result: results[]: desc, passing, stack.
     // generate the test summary
-    // result[]: desc, passing, stack.
     require('./test.js');
     var results = tests.map(function(test) {        
         try{
@@ -31,6 +28,7 @@ exports.run = function() {
         }
     });
     print(results);
+    return results;
 }
 
 function print(results) {
@@ -48,6 +46,10 @@ function print(results) {
     console.log('\n');
     console.log (passingTests + ' tests passing');
     console.log (failingTests + ' tests failing');
+}
 
+module.exports = {
+    it,
+    run
 }
 
